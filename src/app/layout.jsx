@@ -1,16 +1,19 @@
-import { DM_Serif_Display, Plus_Jakarta_Sans } from "next/font/google"
+import { Bebas_Neue, DM_Sans } from "next/font/google"
 import "../styles/globals.css"
+import PageTransition from "@/components/PageTransition"
 
-const plusJakartaSans = Plus_Jakarta_Sans({
+const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
-  variable: "--font-plus-jakarta",
-  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-bebas-neue",
+  weight: ["400"],
+  display: "swap",
 })
 
-const dmSerifDisplay = DM_Serif_Display({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-dm-serif",
-  weight: ["400"],
+  variable: "--font-dm-sans",
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 })
 
 export const metadata = {
@@ -23,9 +26,13 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${plusJakartaSans.variable} ${dmSerifDisplay.variable} antialiased`}
+      className={`${bebasNeue.variable} ${dmSans.variable} antialiased`}
+      data-scroll-behavior="smooth"
     >
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        <PageTransition />
+        {children}
+      </body>
     </html>
   )
 }

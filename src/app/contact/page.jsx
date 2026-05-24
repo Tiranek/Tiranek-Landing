@@ -1,6 +1,8 @@
 "use client"
 
+import CustomCursor from "@/components/CustomCursor"
 import Footer from "@/components/Footer"
+import GrainOverlay from "@/components/GrainOverlay"
 import Navbar from "@/components/Navbar"
 import { useState } from "react"
 
@@ -60,6 +62,8 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-cream">
+      <GrainOverlay />
+      <CustomCursor />
       <Navbar />
 
       <section className="relative pt-36 pb-20 px-6 overflow-hidden">

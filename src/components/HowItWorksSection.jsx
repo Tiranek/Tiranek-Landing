@@ -1,162 +1,135 @@
-import { ArrowRight, Bell, MapPin, Users } from "lucide-react"
+"use client"
+
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useEffect, useRef } from "react"
+
+const steps = [
+  {
+    num: "01",
+    title: "WhatsApp Initiation",
+    desc: "Message the field directly from WhatsApp to get started instantly.",
+  },
+  {
+    num: "02",
+    title: "Tiranek Assistant",
+    desc: "Our bot guides you through city, field, and time slot selection.",
+  },
+  {
+    num: "03",
+    title: "Confirm & Pay",
+    desc: "Receive a clear invoice and pay securely in seconds.",
+  },
+]
 
 export default function HowItWorksSection() {
+  const sectionRef = useRef(null)
+  const labelRef = useRef(null)
+  const headingRef = useRef(null)
+  const subRef = useRef(null)
+  const stepRefs = useRef([])
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        labelRef.current,
+        { y: "100%", opacity: 0 },
+        {
+          y: "0%", opacity: 1, duration: 0.7, ease: "power3.out",
+          scrollTrigger: { trigger: labelRef.current, start: "top 88%" },
+        }
+      )
+
+      gsap.fromTo(
+        headingRef.current,
+        { y: 40, opacity: 0 },
+        {
+          y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
+          scrollTrigger: { trigger: headingRef.current, start: "top 85%" },
+        }
+      )
+
+      gsap.fromTo(
+        subRef.current,
+        { y: 20, opacity: 0 },
+        {
+          y: 0, opacity: 1, duration: 0.7, ease: "power3.out",
+          scrollTrigger: { trigger: subRef.current, start: "top 88%" },
+        }
+      )
+
+      gsap.fromTo(
+        stepRefs.current,
+        { y: 50, opacity: 0 },
+        {
+          y: 0, opacity: 1, duration: 0.7, ease: "power3.out",
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: stepRefs.current[0],
+            start: "top 85%",
+          },
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section id="how-it-works" className="py-28 px-6 bg-white">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="text-xs font-bold text-green uppercase tracking-widest mb-3">
-            How it Works
-          </p>
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-navy mb-4 tracking-tight">
-            Seamless Integration
+    <div ref={sectionRef} id="how-it-works" className="bg-dark py-28 px-6">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-20">
+          <div className="overflow-hidden mb-4">
+            <p ref={labelRef} className="section-label" style={{ opacity: 0, transform: "translateY(100%)" }}>
+              How it Works
+            </p>
+          </div>
+          <h2
+            ref={headingRef}
+            className="font-display text-[clamp(2.5rem,7vw,5.5rem)] text-paper uppercase tracking-tight leading-none mb-5"
+            style={{ opacity: 0 }}
+          >
+            Three Simple Steps
           </h2>
-          <p className="text-base text-muted max-w-xl mx-auto">
-            Our WhatsApp Bot allows you to book fields through simple conversations
+          <p ref={subRef} className="text-sm text-muted max-w-sm mx-auto" style={{ opacity: 0 }}>
+            From WhatsApp message to confirmed booking in under a minute.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
-          <div className="bg-cream rounded-3xl border border-border p-6 flex flex-col">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-8 h-8 bg-navy rounded-lg flex items-center justify-center">
-                <span className="text-white text-xs font-black">1</span>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/5 rounded-2xl overflow-hidden border border-white/5">
+          {steps.map((step, i) => (
+            <div
+              key={i}
+              ref={(el) => { stepRefs.current[i] = el }}
+              className="bg-dark p-10 flex flex-col gap-6 group hover:bg-white/[0.03] transition-colors duration-300"
+              style={{ opacity: 0 }}
+            >
+              <span
+                className="font-display text-[5rem] leading-none font-bold select-none"
+                style={{ color: "#1e1e1e", WebkitTextStroke: "1px #3bf07330", transition: "color 0.3s" }}
+                onMouseEnter={(e) => { e.currentTarget.style.WebkitTextStroke = "1px #3bf073" }}
+                onMouseLeave={(e) => { e.currentTarget.style.WebkitTextStroke = "1px #3bf07330" }}
+              >
+                {step.num}
+              </span>
+
+              <div>
+                <h3 className="font-display text-xl text-paper uppercase tracking-wide mb-3 group-hover:text-accent transition-colors duration-300">
+                  {step.title}
+                </h3>
+                <p className="text-sm text-muted leading-relaxed">
+                  {step.desc}
+                </p>
               </div>
-              <h3 className="text-base font-bold text-navy">WhatsApp Initiation</h3>
+
+              <div className="mt-auto h-px bg-white/5 group-hover:bg-accent/30 transition-colors duration-300" />
             </div>
-            <div className="bg-white rounded-2xl border border-border p-6 flex-1 flex flex-col justify-center gap-6">
-              <div className="flex items-start gap-4 flex-row-reverse">
-                <div className="w-9 h-9 bg-navy rounded-full flex items-center justify-center flex-shrink-0">
-                  <Users className="w-4 h-4 text-white" />
-                </div>
-                <div className="flex-1 text-right">
-                  <div className="text-xs font-semibold text-muted mb-1.5">You</div>
-                  <div className="bg-navy text-white px-4 py-3 rounded-2xl rounded-tr-none inline-block text-sm">
-                    <p>Hello, I'd like to book a field.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-9 h-9 bg-green rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-white font-bold text-xs">WH</span>
-                </div>
-                <div className="flex-1">
-                  <div className="text-xs font-semibold text-muted mb-1.5">Field Auto Reply</div>
-                  <div className="bg-green-light px-4 py-3 rounded-2xl rounded-tl-none text-sm border border-green-mid/30">
-                    <p className="text-navy mb-3">
-                      Hello! 👋 To book our fields quickly and securely, please use our automated
-                      assistant:
-                    </p>
-                    <a
-                      href="#"
-                      className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-xl text-green-dark text-xs font-bold border border-green-mid hover:bg-green-light transition-colors group"
-                    >
-                      <span>tiranek.com/bot</span>
-                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-cream rounded-3xl border border-border p-6 flex flex-col">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-8 h-8 bg-navy rounded-lg flex items-center justify-center">
-                <span className="text-white text-xs font-black">2</span>
-              </div>
-              <h3 className="text-base font-bold text-navy">Tiranek Assistant</h3>
-            </div>
-            <div className="bg-white rounded-2xl border border-border p-5 flex-1 flex flex-col gap-4">
-              <div className="flex items-start gap-3">
-                <div className="w-7 h-7 bg-green rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Bell className="w-3.5 h-3.5 text-white" />
-                </div>
-                <div className="flex-1">
-                  <div className="bg-green-light p-3 rounded-2xl rounded-tl-none text-sm border border-green-mid/20">
-                    <p className="text-navy font-medium mb-2">Please select a city:</p>
-                    <div className="flex flex-wrap gap-2">
-                      <span className="bg-green text-white px-3 py-1 rounded-lg text-xs font-bold">
-                        Casablanca ✓
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="w-7 h-7 bg-green rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Bell className="w-3.5 h-3.5 text-white" />
-                </div>
-                <div className="flex-1">
-                  <div className="bg-green-light p-3 rounded-2xl rounded-tl-none text-sm border border-green-mid/20">
-                    <p className="text-navy font-medium mb-2">Select a field:</p>
-                    <div className="flex flex-wrap gap-2">
-                      <span className="bg-green text-white px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1">
-                        <MapPin className="w-3 h-3" /> Oasis Pitch ✓
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="w-7 h-7 bg-green rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Bell className="w-3.5 h-3.5 text-white" />
-                </div>
-                <div className="flex-1">
-                  <div className="bg-green-light p-3 rounded-2xl rounded-tl-none text-sm border border-green-mid/20">
-                    <p className="text-navy font-medium mb-2">Available hours today:</p>
-                    <div className="flex gap-2 flex-wrap">
-                      {["18:00", "20:00", "21:00", "22:00", "23:00", "00:00"].map((time) => (
-                        <span
-                          key={time}
-                          className="bg-white text-navy px-3 py-1.5 rounded-lg text-xs font-semibold border border-green-mid"
-                        >
-                          {time}
-                        </span>
-                      ))}
-                      <span className="bg-green text-white px-3 py-1.5 rounded-lg text-xs font-bold">
-                        19:00 ✓
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="w-7 h-7 bg-green rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Bell className="w-3.5 h-3.5 text-white" />
-                </div>
-                <div className="flex-1">
-                  <div className="bg-green-light p-4 rounded-2xl rounded-tl-none text-sm border border-green-mid/20">
-                    <p className="text-navy font-medium mb-3">Booking ready! Here is your invoice:</p>
-                    <div className="bg-white p-3 rounded-xl border border-border">
-                      <div className="flex justify-between items-center mb-1">
-                        <span className="text-muted text-xs">Field</span>
-                        <span className="font-semibold text-navy text-xs">Oasis Pitch</span>
-                      </div>
-                      <div className="flex justify-between items-center mb-3">
-                        <span className="text-muted text-xs">Time</span>
-                        <span className="font-semibold text-navy text-xs">19:00 - 20:00</span>
-                      </div>
-                      <div className="h-px bg-border w-full mb-2"></div>
-                      <div className="flex justify-between items-center mb-3">
-                        <span className="font-bold text-navy text-sm">Total</span>
-                        <span className="font-bold text-green-dark text-sm">250 DH</span>
-                      </div>
-                      <button className="w-full bg-navy hover:bg-green-dark text-white text-xs font-bold py-2.5 rounded-lg transition-colors duration-200">
-                        Pay Invoice
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
+
       </div>
-    </section>
+    </div>
   )
 }

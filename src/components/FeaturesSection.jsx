@@ -3,6 +3,7 @@
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Calendar, Clock, MapPin, TrendingUp } from "lucide-react"
+import { useTranslations } from "next-intl"
 import { useEffect, useRef } from "react"
 
 const features = [
@@ -33,6 +34,7 @@ const features = [
 ]
 
 export default function FeaturesSection() {
+  const t = useTranslations('Features')
   const sectionRef = useRef(null)
   const labelRef = useRef(null)
   const headingWordsRef = useRef([])
@@ -83,7 +85,7 @@ export default function FeaturesSection() {
   }, [])
 
   return (
-    <section id="features" className="md:py-28 py-4 px-6 bg-paper overflow-hidden">
+    <section id="features" className="py-12 md:py-28 px-6 bg-paper overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
           <div>
@@ -93,12 +95,12 @@ export default function FeaturesSection() {
                 className="section-label"
                 style={{ opacity: 0, transform: "translateY(100%)" }}
               >
-                Features
+                {t('label')}
               </p>
             </div>
 
-            <h2 className="font-display leading-none tracking-tight">
-              {["Everything", "You Need"].map((word, i) => (
+            <h2 className="font-display leading-none rtl:leading-snug rtl:pb-2 tracking-tight">
+              {[t('title1'), t('title2')].map((word, i) => (
                 <span key={i} className="word-wrapper block">
                   <span
                     ref={(el) => { headingWordsRef.current[i] = el }}
@@ -113,7 +115,7 @@ export default function FeaturesSection() {
           </div>
 
           <p className="text-sm text-muted max-w-xs leading-relaxed md:text-right">
-            Powerful features designed to make sports field booking seamless and enjoyable
+            {t('subtitle')}
           </p>
         </div>
 
@@ -131,13 +133,13 @@ export default function FeaturesSection() {
                 <div className="w-10 h-10 bg-ink group-hover:bg-accent rounded-lg flex items-center justify-center transition-colors duration-300">
                   <f.icon className="w-4.5 h-4.5 text-paper group-hover:text-ink transition-colors duration-300" strokeWidth={1.75} />
                 </div>
-                <span className="font-display text-5xl text-ink/8 group-hover:text-accent/15 transition-colors duration-500 leading-none">
+                <span className="font-display text-5xl text-ink/8 group-hover:text-accent/15 transition-colors duration-500 leading-none rtl:leading-snug">
                   {f.num}
                 </span>
               </div>
 
-              <h3 className="text-sm font-semibold text-ink mb-2">{f.title}</h3>
-              <p className="text-sm text-muted leading-relaxed">{f.description}</p>
+              <h3 className="text-sm font-semibold text-ink mb-2">{t(`items.${f.num}.title`)}</h3>
+              <p className="text-sm text-muted leading-relaxed">{t(`items.${f.num}.desc`)}</p>
             </div>
           ))}
         </div>

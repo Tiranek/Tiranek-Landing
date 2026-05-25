@@ -2,6 +2,7 @@
 
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useTranslations } from "next-intl"
 import { useEffect, useRef } from "react"
 
 const testimonials = [
@@ -37,6 +38,7 @@ const Stars = () => (
 )
 
 export default function TestimonialsSection() {
+  const t = useTranslations('Testimonials')
   const sectionRef = useRef(null)
   const labelRef = useRef(null)
   const headingRef = useRef(null)
@@ -83,55 +85,55 @@ export default function TestimonialsSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="testimonials" className="py-28 px-6 bg-dark overflow-hidden">
+    <section ref={sectionRef} id="testimonials" className="py-12 md:py-28 px-6 bg-dark overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-16">
           <div className="overflow-hidden mb-4">
             <p ref={labelRef} className="section-label" style={{ opacity: 0, transform: "translateY(100%)" }}>
-              Testimonials
+              {t('label')}
             </p>
           </div>
           <h2
             ref={headingRef}
-            className="font-display text-[clamp(2.5rem,7vw,5rem)] text-paper uppercase tracking-tight leading-none mb-4"
+            className="font-display text-[clamp(2.5rem,7vw,5rem)] text-paper uppercase tracking-tight leading-none rtl:leading-snug rtl:pb-2 mb-4"
             style={{ opacity: 0 }}
           >
-            Loved by Players &amp; Managers
+            {t('title')}
           </h2>
           <p className="text-sm text-muted max-w-sm mx-auto">
-            Don't just take our word for it. Here's what our community has to say.
+            {t('subtitle')}
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-5">
-          {testimonials.map((t, i) => (
+          {testimonials.map((t_item, i) => (
             <div
               key={i}
               ref={(el) => { cardsRef.current[i] = el }}
-              className={`flex flex-col p-8 rounded-xl border ${t.featured
+              className={`flex flex-col p-8 rounded-xl border ${t_item.featured
                 ? "bg-accent border-accent/50"
                 : "bg-white/5 border-white/10 hover:border-white/20"
                 } transition-all duration-300`}
               style={{ clipPath: "inset(0 100% 0 0)", opacity: 0 }}
             >
-              <div className={`font-display text-7xl leading-none mb-4 ${t.featured ? "text-ink/15" : "text-white/10"}`}>
+              <div className={`font-display text-7xl leading-none rtl:leading-snug mb-4 ${t_item.featured ? "text-ink/15" : "text-white/10"}`}>
                 "
               </div>
 
               <Stars />
 
-              <p className={`text-sm leading-relaxed mb-6 flex-1 ${t.featured ? "text-ink/80" : "text-white/70"}`}>
-                "{t.quote}"
+              <p className={`text-sm leading-relaxed mb-6 flex-1 ${t_item.featured ? "text-ink/80" : "text-white/70"}`}>
+                "{t(`items.${i}.quote`)}"
               </p>
 
-              <div className={`flex items-center gap-3 pt-5 border-t ${t.featured ? "border-ink/15" : "border-white/10"}`}>
-                <div className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm ${t.featured ? "bg-ink/10 text-ink" : "bg-white/10 text-paper"
+              <div className={`flex items-center gap-3 pt-5 border-t ${t_item.featured ? "border-ink/15" : "border-white/10"}`}>
+                <div className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm ${t_item.featured ? "bg-ink/10 text-ink" : "bg-white/10 text-paper"
                   }`}>
-                  {t.initial}
+                  {t(`items.${i}.initial`)}
                 </div>
                 <div>
-                  <p className={`text-sm font-bold ${t.featured ? "text-ink" : "text-paper"}`}>{t.name}</p>
-                  <p className={`text-xs ${t.featured ? "text-ink/50" : "text-muted"}`}>{t.role}</p>
+                  <p className={`text-sm font-bold ${t_item.featured ? "text-ink" : "text-paper"}`}>{t(`items.${i}.name`)}</p>
+                  <p className={`text-xs ${t_item.featured ? "text-ink/50" : "text-muted"}`}>{t(`items.${i}.role`)}</p>
                 </div>
               </div>
             </div>

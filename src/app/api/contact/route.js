@@ -13,16 +13,18 @@ export async function POST(request) {
     }
 
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: process.env.SMTP_HOST,
+      port: parseInt(process.env.SMTP_PORT || "587", 10),
+      secure: process.env.SMTP_SECURE === "true",
       auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD,
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
       },
     })
 
     await transporter.sendMail({
-      from: `"Tiranek Contact" <${process.env.GMAIL_USER}>`,
-      to: "tiranek.startup@gmail.com",
+      from: `"Tiranek Contact" <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
+      to: process.env.SMTP_TO || "tiranek.startup@gmail.com",
       replyTo: email,
       subject: subject
         ? `[Tiranek Contact] ${subject}`
@@ -32,9 +34,6 @@ export async function POST(request) {
           <div style="background: #ffffff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(10,22,40,0.08);">
             <!-- Header -->
             <div style="background: #0a1628; padding: 32px 40px; display: flex; align-items: center; gap: 12px;">
-              <div style="width: 40px; height: 40px; background: #0f2040; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
-                <span style="color: #4ade80; font-weight: 900; font-size: 20px;">T</span>
-              </div>
               <span style="color: #ffffff; font-size: 22px; font-weight: 800; letter-spacing: -0.5px;">Tiranek</span>
             </div>
             <!-- Body -->

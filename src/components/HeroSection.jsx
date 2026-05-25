@@ -5,12 +5,14 @@ import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ArrowRight, Shield } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
+import { Link } from "@/i18n/routing"
+import { useTranslations } from "next-intl"
 import { useEffect, useRef, useState } from "react"
 
 const AVATAR_COLORS = ["#3bf073", "#0d0d0d", "#1a7a35", "#5adb88"]
 
 export default function HeroSection() {
+  const t = useTranslations('Hero')
   const [islandActive, setIslandActive] = useState(false)
   const sectionRef = useRef(null)
   const watermarkRef = useRef(null)
@@ -96,12 +98,12 @@ export default function HeroSection() {
     return () => ScrollTrigger.getAll().forEach((st) => st.kill())
   }, [])
 
-  const titleWords = ["Book Your Perfect", "Sports Field"]
+  const titleWords = [t('titleWord1'), t('titleWord2')]
 
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex flex-col justify-center pt-24 pb-20 px-6 overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center pt-20 pb-12 md:pt-24 md:pb-20 px-6 overflow-hidden"
     >
       <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }}>
         <FootballNet />
@@ -111,8 +113,8 @@ export default function HeroSection() {
         aria-hidden="true"
         className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
       >
-        <span className="font-display text-[18vw] text-ink/[0.035] whitespace-nowrap leading-none tracking-tight">
-          BOOK YOUR PITCH
+        <span className="font-display text-[18vw] text-ink/[0.035] whitespace-nowrap leading-none rtl:leading-snug rtl:pb-4 tracking-tight">
+          {t('watermark') || "BOOK YOUR PITCH"}
         </span>
       </div>
 
@@ -120,29 +122,29 @@ export default function HeroSection() {
         <div className="flex flex-col items-start">
           <div
             ref={badgeRef}
-            className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 md:gap-2.5 border border-accent/30 bg-accent/8 rounded-full mb-10 opacity-0"
+            className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 md:gap-2.5 border border-accent/30 bg-accent/8 rounded-full mb-6 md:mb-10 opacity-0"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
             </span>
             <span className="text-[9px] md:text-[11px] font-bold text-accent tracking-[0.15em] md:tracking-[0.2em] uppercase whitespace-nowrap">
-              Revolutionizing Sports Field Booking
+              {t('badge')}
             </span>
           </div>
 
-          <h1 className="mb-8">
+          <h1 className="mb-6 md:mb-8">
             {titleWords.map((word, i) => (
               <span key={i} className="word-wrapper block md:inline-block mr-[0.15em]">
                 <span
                   ref={(el) => { wordsRef.current[i] = el }}
-                  className="word-inner font-display text-[clamp(3.5rem,11vw,9.5rem)] text-ink leading-[0.92] tracking-tight uppercase"
+                  className="word-inner font-display text-[clamp(3.5rem,11vw,9.5rem)] text-ink leading-[0.92] rtl:leading-snug rtl:pb-2 tracking-tight uppercase"
                   style={{ opacity: 0, transform: "translateY(110%)" }}
                 >
                   {i === titleWords.length - 1 ? (
                     <>
-                      <span>Sports </span>
-                      <span className="text-accent">Field</span>
+                      <span>{t('titleWord2')}</span>
+                      <span className="text-accent">{t('titleWord3')}</span>
                     </>
                   ) : (
                     word
@@ -154,21 +156,20 @@ export default function HeroSection() {
 
           <p
             ref={subtitleRef}
-            className="text-base md:text-lg text-muted leading-relaxed mb-10 max-w-md opacity-0"
+            className="text-base md:text-lg text-muted leading-relaxed mb-6 md:mb-10 max-w-md opacity-0"
           >
-            The easiest way to reserve sports fields. Find, book, and manage your game
-            time with just a few taps.
+            {t('subtitle')}
           </p>
 
           <div
             ref={ctaRef}
-            className="flex flex-col sm:flex-row items-start sm:items-center gap-5 mb-20 opacity-0"
+            className="flex flex-col sm:flex-row items-start sm:items-center gap-5 mb-10 md:mb-20 opacity-0"
           >
             <Link
               href="/contact"
               className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-ink text-paper text-sm font-semibold rounded-full hover:bg-accent hover:text-ink transition-all duration-300 group"
             >
-              Contact Us
+              {t('contactBtn')}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
 
@@ -188,7 +189,7 @@ export default function HeroSection() {
                 ))}
               </div>
               <p className="text-sm text-muted">
-                <span className="text-ink font-bold">10K+</span> players already booking
+                <span className="text-ink font-bold">10K+</span> {t('players')}
               </p>
             </div>
           </div>
@@ -212,7 +213,7 @@ export default function HeroSection() {
                       <div className="flex items-center gap-2 bg-[#2c2c2e] rounded-md px-6 py-0.5 border border-white/[0.05] max-w-xs w-full justify-center shadow-sm">
                         <Shield size={9} className="text-[#3bf073]" />
                         <span className="text-[9px] text-white/70 tracking-wide font-sans font-medium">
-                          tiranek.com/dashboard
+                          {t('dashboardPreview')}
                         </span>
                       </div>
                       <div className="w-12" />
@@ -325,11 +326,11 @@ export default function HeroSection() {
                               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#3bf073] opacity-75" />
                               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#3bf073]" />
                             </span>
-                            <span className="text-[7.5px] font-bold text-[#3bf073] tracking-wider uppercase font-sans">Live Match</span>
+                            <span className="text-[7.5px] font-bold text-[#3bf073] tracking-wider uppercase font-sans">{t('liveMatch')}</span>
                           </div>
 
                           <div className="flex items-center gap-1 text-[7.5px] text-white/90 font-semibold font-sans">
-                            <span>Tiranek Arena</span>
+                            <span>{t('arena')}</span>
                             <span className="w-0.5 h-0.5 rounded-full bg-white/20" />
                             <span className="text-[#3bf073] font-mono font-bold">19:00</span>
                           </div>

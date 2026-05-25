@@ -1,17 +1,26 @@
 "use client"
 
 import { gsap } from "gsap"
-import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
+import { ChevronDown, Globe } from "lucide-react"
+import { Link, usePathname, useRouter } from "@/i18n/routing"
+import { useLocale, useTranslations } from "next-intl"
 import { useEffect, useRef, useState } from "react"
 
 const links = [
-  { label: "Features", href: "/#features" },
-  { label: "How It Works", href: "/#how-it-works" },
-  { label: "Testimonials", href: "/#testimonials" },
+  { labelKey: "features", href: "/#features" },
+  { labelKey: "howItWorks", href: "/#how-it-works" },
+  { labelKey: "testimonials", href: "/#testimonials" },
+]
+
+const locales = [
+  { code: 'en', label: 'English' },
+  { code: 'fr', label: 'Français' },
+  { code: 'ar', label: 'العربية' }
 ]
 
 export default function Navbar() {
+  const t = useTranslations('Navbar')
+  const locale = useLocale()
   const pathname = usePathname()
   const router = useRouter()
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -86,6 +95,10 @@ export default function Navbar() {
     }
   }
 
+  const changeLocale = (nextLocale) => {
+    router.replace(pathname, { locale: nextLocale })
+  }
+
   return (
     <>
       <nav
@@ -96,22 +109,17 @@ export default function Navbar() {
           }`}
       >
         <div className="flex justify-between items-center h-12 w-full">
-          <Link href="/" onClick={handleLogoClick} className="flex items-center gap-2.5 group">
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 shadow-sm ${scrolled ? "bg-accent scale-100 group-hover:rotate-12" : "bg-ink group-hover:rotate-12"
-              }`}>
-              <span className={`font-display text-lg font-bold leading-none select-none transition-colors duration-500 ${scrolled ? "text-ink" : "text-paper"
-                }`}>T</span>
-            </div>
-            <span
-              className={`font-display text-xl tracking-wider transition-colors duration-500 font-bold select-none ${scrolled ? "text-paper" : "text-ink"
-                }`}
-            >
-              TIRANEK
-            </span>
+          <Link href="/" onClick={handleLogoClick} className="flex items-center group">
+            <img
+              src="/images/logo-no-bg.png"
+              alt="Tiranek"
+              className={`h-12 w-auto object-contain transition-all duration-500 group-hover:scale-105 ${!scrolled && pathname === '/' ? '' : ''}`}
+            />
           </Link>
 
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
-            {!isContactPage && links.map(({ label, href }) => {
+            {!isContactPage && links.map(({ labelKey, href }) => {
+              const label = t(labelKey)
               const cls = `relative px-3 py-1.5 text-xs font-semibold tracking-wide uppercase transition-colors duration-300 ${scrolled
                 ? "text-paper/70 hover:text-paper"
                 : "text-ink/60 hover:text-ink"
@@ -131,7 +139,32 @@ export default function Navbar() {
             })}
           </div>
 
-          <div className="hidden md:flex items-center">
+          <div className="hidden md:flex items-center gap-4">
+            <div className="relative group/lang">
+              <button
+                className={`flex items-center gap-1.5 text-xs font-bold tracking-wider uppercase transition-colors duration-300 ${scrolled ? "text-accent hover:text-paper" : "text-ink hover:text-accent"
+                  }`}
+              >
+                <Globe className="w-3.5 h-3.5" strokeWidth={2.5} />
+                <span>{locale}</span>
+                <ChevronDown className="w-3 h-3 transition-transform duration-300 group-hover/lang:rotate-180" strokeWidth={2.5} />
+              </button>
+
+              <div className="absolute top-full right-0 mt-2 w-32 opacity-0 translate-y-2 pointer-events-none group-hover/lang:opacity-100 group-hover/lang:translate-y-0 group-hover/lang:pointer-events-auto transition-all duration-300 bg-[#0d0d0d]/90 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-xl flex flex-col p-1 z-50">
+                {locales.map((loc) => (
+                  <button
+                    key={loc.code}
+                    onClick={() => changeLocale(loc.code)}
+                    className={`text-left px-3 py-2 text-xs font-semibold tracking-wide rounded-lg transition-colors duration-200 ${locale === loc.code
+                      ? "bg-accent/10 text-accent"
+                      : "text-white/70 hover:bg-white/5 hover:text-white"
+                      }`}
+                  >
+                    {loc.label}
+                  </button>
+                ))}
+              </div>
+            </div>
             <Link
               href="/contact"
               className={`px-5 py-2.5 rounded-full text-xs font-bold tracking-wide uppercase transition-all duration-300 shadow-sm active:scale-95 ${scrolled
@@ -139,7 +172,7 @@ export default function Navbar() {
                 : "bg-ink text-paper hover:bg-accent hover:text-ink"
                 }`}
             >
-              Book Now
+              {t('bookNow')}
             </Link>
           </div>
 
@@ -169,10 +202,11 @@ export default function Navbar() {
           className="md:hidden fixed inset-x-4 top-20 z-40 bg-[#0d0d0d]/90 backdrop-blur-2xl rounded-3xl border border-white/10 p-6 flex flex-col gap-6 shadow-[0_24px_50px_rgba(0,0,0,0.5)]"
         >
           <div className="flex flex-col gap-4">
-            {links.map(({ label, href }) => {
+            {links.map(({ labelKey, href }) => {
+              const label = t(labelKey)
               return (
                 <Link
-                  key={label}
+                  key={labelKey}
                   href={href}
                   onClick={(e) => {
                     handleLinkClick(e, href)
@@ -186,12 +220,36 @@ export default function Navbar() {
             })}
           </div>
 
+          <div className="flex flex-col gap-3 mt-4 border-t border-white/10 pt-6">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-1 px-2 font-bold">Language</p>
+            <div className="grid grid-cols-2 gap-2">
+              {locales.map((loc) => (
+                <button
+                  key={loc.code}
+                  onClick={() => {
+                    changeLocale(loc.code)
+                    setMobileOpen(false)
+                  }}
+                  className={`flex items-center justify-between px-4 py-3 rounded-xl border transition-all duration-300 ${locale === loc.code
+                    ? "bg-accent/10 border-accent/30 text-accent"
+                    : "bg-white/5 border-transparent text-white/70 hover:bg-white/10 hover:text-white"
+                    }`}
+                >
+                  <span className="text-sm font-semibold">{loc.label}</span>
+                  {locale === loc.code && (
+                    <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <Link
             href="/contact"
             onClick={() => setMobileOpen(false)}
             className="mobile-link w-full py-4 bg-accent hover:bg-paper text-ink hover:text-ink text-center font-bold rounded-full transition-colors uppercase tracking-wider text-sm mt-2 shadow-[0_4px_14px_rgba(59,240,115,0.2)]"
           >
-            Book Now
+            {t('bookNow')}
           </Link>
         </div>
       )}

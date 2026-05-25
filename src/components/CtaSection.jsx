@@ -3,10 +3,12 @@
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ArrowRight } from "lucide-react"
-import Link from "next/link"
+import { Link } from "@/i18n/routing"
+import { useTranslations } from "next-intl"
 import { useEffect, useRef } from "react"
 
 export default function CtaSection() {
+  const t = useTranslations('Cta')
   const sectionRef = useRef(null)
   const watermarkRef = useRef(null)
   const contentRef = useRef(null)
@@ -74,19 +76,19 @@ export default function CtaSection() {
     }
   }, [])
 
-  const watermarkText = "GET STARTED"
+  const watermarkText = t('watermark')
 
   return (
     <section
       ref={sectionRef}
-      className="relative py-36 px-6 bg-ink overflow-hidden"
+      className="relative py-16 md:py-36 px-6 bg-ink overflow-hidden"
     >
       <div
         ref={watermarkRef}
         aria-hidden="true"
         className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
       >
-        <span className="font-display text-[15vw] text-paper/[0.04] whitespace-nowrap leading-none tracking-tight flex">
+        <span className="font-display text-[15vw] text-paper/[0.04] whitespace-nowrap leading-none rtl:leading-snug rtl:pb-4 tracking-tight flex">
           {watermarkText.split("").map((char, i) => (
             <span key={i} className="wm-char inline-block" style={{ opacity: 0 }}>
               {char === " " ? "\u00A0" : char}
@@ -96,14 +98,14 @@ export default function CtaSection() {
       </div>
 
       <div ref={contentRef} className="max-w-3xl mx-auto text-center relative z-10" style={{ opacity: 0 }}>
-        <p className="section-label mb-6">Get Started Today</p>
+        <p className="section-label mb-4 md:mb-6">{t('label')}</p>
 
-        <h2 className="font-display text-[clamp(3rem,9vw,7rem)] text-paper uppercase tracking-tight leading-none mb-6">
-          Ready to Get Started?
+        <h2 className="font-display text-[clamp(3rem,9vw,7rem)] text-paper uppercase tracking-tight leading-none rtl:leading-snug rtl:pb-2 mb-4 md:mb-6">
+          {t('title')}
         </h2>
 
-        <p className="text-base text-muted mb-12 max-w-sm mx-auto leading-relaxed">
-          Join thousands of sports enthusiasts booking their perfect game time
+        <p className="text-base text-muted mb-8 md:mb-12 max-w-sm mx-auto leading-relaxed">
+          {t('subtitle')}
         </p>
 
         <div ref={btnRef} className="inline-block">
@@ -111,7 +113,7 @@ export default function CtaSection() {
             href="/contact"
             className="btn-magnetic inline-flex items-center gap-3 px-10 py-5 bg-accent text-ink text-sm font-bold rounded-full hover:bg-paper transition-colors duration-300 group"
           >
-            Contact Us
+            {t('btn')}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
         </div>

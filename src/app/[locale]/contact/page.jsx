@@ -4,6 +4,7 @@ import CustomCursor from "@/components/CustomCursor"
 import Footer from "@/components/Footer"
 import GrainOverlay from "@/components/GrainOverlay"
 import Navbar from "@/components/Navbar"
+import { useTranslations } from "next-intl"
 import { useState } from "react"
 
 const ContactInfo = ({ icon, label, value, href }) => (
@@ -24,6 +25,7 @@ const ContactInfo = ({ icon, label, value, href }) => (
 )
 
 export default function ContactPage() {
+  const t = useTranslations('Contact')
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" })
   const [status, setStatus] = useState("idle") // idle | loading | success | error
   const [errorMsg, setErrorMsg] = useState("")
@@ -47,7 +49,7 @@ export default function ContactPage() {
       const data = await res.json()
 
       if (!res.ok) {
-        setErrorMsg(data.error || "Something went wrong.")
+        setErrorMsg(data.error || t('errorDefault'))
         setStatus("error")
         return
       }
@@ -55,7 +57,7 @@ export default function ContactPage() {
       setStatus("success")
       setForm({ name: "", email: "", subject: "", message: "" })
     } catch {
-      setErrorMsg("Network error. Please check your connection and try again.")
+      setErrorMsg(t('errorNetwork'))
       setStatus("error")
     }
   }
@@ -74,14 +76,14 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto text-center relative">
           <div className="inline-flex items-center gap-2 bg-green-light border border-green-mid rounded-full px-4 py-1.5 text-xs font-semibold text-green mb-6 animate-fade-up">
             <span className="w-1.5 h-1.5 rounded-full bg-green inline-block" />
-            We&apos;re here to help
+            {t('help')}
           </div>
           <h1 className="font-display text-5xl md:text-6xl text-navy mb-5 animate-fade-up-delay-1">
-            Get in{" "}
-            <span className="shimmer-text">Touch</span>
+            {t('title1')}
+            <span className="shimmer-text">{t('title2')}</span>
           </h1>
           <p className="text-lg text-muted max-w-xl mx-auto leading-relaxed animate-fade-up-delay-2">
-            Have a question, partnership idea, or just want to say hello? We&apos;d love to hear from you.
+            {t('subtitle')}
           </p>
         </div>
       </section>
@@ -90,16 +92,16 @@ export default function ContactPage() {
         <div className="max-w-6xl mx-auto grid lg:grid-cols-5 gap-8">
           <div className="lg:col-span-2 space-y-6 animate-fade-up-delay-2">
             <div className="bg-navy rounded-2xl p-8 text-white">
-              <h2 className="font-display text-2xl mb-2">Contact Information</h2>
+              <h2 className="font-display text-2xl mb-2">{t('infoTitle')}</h2>
               <p className="text-white/60 text-sm leading-relaxed mb-8">
-                Fill out the form and our team will get back to you within 24 hours.
+                {t('infoDesc')}
               </p>
 
               <div className="space-y-6">
                 <ContactInfo
-                  href="mailto:tiranek.startup@gmail.com"
-                  label="Email"
-                  value="tiranek.startup@gmail.com"
+                  href="mailto:contact@tiranek.ma"
+                  label={t('emailLabel')}
+                  value="contact@tiranek.ma"
                   icon={
                     <svg className="w-5 h-5 text-green-vivid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -112,11 +114,11 @@ export default function ContactPage() {
             </div>
 
             <div className="bg-white border border-border rounded-2xl p-6 space-y-4">
-              <h3 className="text-sm font-bold text-navy uppercase tracking-widest">Quick Answers</h3>
+              <h3 className="text-sm font-bold text-navy uppercase tracking-widest">{t('quickAnswers')}</h3>
               {[
-                { q: "How long until I get a reply?", a: "We typically respond within 24 hours on business days." },
-                { q: "Do you offer demos?", a: "Yes! Just mention it in your message and we'll schedule one." },
-                { q: "Is Tiranek available in my city?", a: "We're expanding fast — reach out to check availability." },
+                { q: t('q1'), a: t('a1') },
+                { q: t('q2'), a: t('a2') },
+                { q: t('q3'), a: t('a3') },
               ].map(({ q, a }) => (
                 <div key={q} className="border-t border-border pt-4 first:border-0 first:pt-0">
                   <p className="text-sm font-semibold text-navy mb-1">{q}</p>
@@ -135,35 +137,35 @@ export default function ContactPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h2 className="font-display text-3xl text-navy mb-3">Message Sent!</h2>
+                  <h2 className="font-display text-3xl text-navy mb-3">{t('successTitle')}</h2>
                   <p className="text-muted text-sm leading-relaxed max-w-sm mb-8">
-                    Thanks for reaching out. We&apos;ve received your message and will get back to you within 24 hours.
+                    {t('successDesc')}
                   </p>
                   <button
                     type="button"
                     onClick={() => setStatus("idle")}
                     className="px-6 py-2.5 bg-navy text-white text-sm font-semibold rounded-xl hover:bg-green-dark transition-all duration-300 cursor-pointer"
                   >
-                    Send another message
+                    {t('sendAnother')}
                   </button>
                 </div>
               ) : (
                 <>
-                  <h2 className="font-display text-3xl text-navy mb-1">Send us a message</h2>
-                  <p className="text-sm text-muted mb-8">All fields marked with * are required.</p>
+                  <h2 className="font-display text-3xl text-navy mb-1">{t('formTitle')}</h2>
+                  <p className="text-sm text-muted mb-8">{t('formRequired')}</p>
 
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
                         <label htmlFor="name" className="block text-xs font-semibold text-navy uppercase tracking-widest mb-2">
-                          Name *
+                          {t('nameLabel')}
                         </label>
                         <input
                           id="name"
                           name="name"
                           type="text"
                           required
-                          placeholder="Your full name"
+                          placeholder={t('namePlaceholder')}
                           value={form.name}
                           onChange={handleChange}
                           className="w-full px-4 py-3 bg-cream border border-border rounded-xl text-sm text-navy placeholder:text-muted/60 focus:outline-none focus:border-green focus:ring-2 focus:ring-green/10 transition-all"
@@ -171,14 +173,14 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <label htmlFor="email" className="block text-xs font-semibold text-navy uppercase tracking-widest mb-2">
-                          Email *
+                          {t('emailLabel2')}
                         </label>
                         <input
                           id="email"
                           name="email"
                           type="email"
                           required
-                          placeholder="you@example.com"
+                          placeholder={t('emailPlaceholder')}
                           value={form.email}
                           onChange={handleChange}
                           className="w-full px-4 py-3 bg-cream border border-border rounded-xl text-sm text-navy placeholder:text-muted/60 focus:outline-none focus:border-green focus:ring-2 focus:ring-green/10 transition-all"
@@ -188,13 +190,13 @@ export default function ContactPage() {
 
                     <div>
                       <label htmlFor="subject" className="block text-xs font-semibold text-navy uppercase tracking-widest mb-2">
-                        Subject
+                        {t('subjectLabel')}
                       </label>
                       <input
                         id="subject"
                         name="subject"
                         type="text"
-                        placeholder="What's this about?"
+                        placeholder={t('subjectPlaceholder')}
                         value={form.subject}
                         onChange={handleChange}
                         className="w-full px-4 py-3 bg-cream border border-border rounded-xl text-sm text-navy placeholder:text-muted/60 focus:outline-none focus:border-green focus:ring-2 focus:ring-green/10 transition-all"
@@ -203,14 +205,14 @@ export default function ContactPage() {
 
                     <div>
                       <label htmlFor="message" className="block text-xs font-semibold text-navy uppercase tracking-widest mb-2">
-                        Message *
+                        {t('messageLabel')}
                       </label>
                       <textarea
                         id="message"
                         name="message"
                         required
                         rows={6}
-                        placeholder="Tell us how we can help..."
+                        placeholder={t('messagePlaceholder')}
                         value={form.message}
                         onChange={handleChange}
                         className="w-full px-4 py-3 bg-cream border border-border rounded-xl text-sm text-navy placeholder:text-muted/60 focus:outline-none focus:border-green focus:ring-2 focus:ring-green/10 transition-all resize-none"
@@ -238,11 +240,11 @@ export default function ContactPage() {
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                           </svg>
-                          Sending...
+                          {t('btnLoading')}
                         </>
                       ) : (
                         <>
-                          Send Message
+                          {t('btnSubmit')}
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                           </svg>

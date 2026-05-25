@@ -1,0 +1,143 @@
+{
+  "Hero": {
+    "badge": "Révolutionner la Réservation de Terrains",
+    "titleWord1": "Réservez Votre",
+    "titleWord2": "Terrain ",
+    "titleWord3": "Idéal",
+    "subtitle": "Le moyen le plus simple de réserver des terrains de sport. Trouvez, réservez et gérez votre temps de jeu en quelques clics.",
+    "contactBtn": "Contactez-nous",
+    "players": "joueurs réservent déjà",
+    "dashboardPreview": "tiranek.com/dashboard",
+    "liveMatch": "Match en Direct",
+    "arena": "Tiranek Arena",
+    "watermark": "RÉSERVEZ VOTRE PITCH"
+  },
+  "Features": {
+    "label": "Fonctionnalités",
+    "title1": "Tout ce dont",
+    "title2": "Vous Avez Besoin",
+    "subtitle": "Des fonctionnalités puissantes conçues pour rendre la réservation de terrains fluide et agréable",
+    "items": {
+      "01": {
+        "title": "Planification Intelligente",
+        "desc": "Réservez votre terrain de sport en quelques secondes grâce à notre système intelligent"
+      },
+      "02": {
+        "title": "Tableau de Bord Analytique",
+        "desc": "Obtenez des informations sur vos habitudes de réservation et les statistiques d'utilisation des terrains"
+      },
+      "03": {
+        "title": "Disponibilité en Temps Réel",
+        "desc": "Vérifiez la disponibilité des terrains instantanément et soyez averti des annulations"
+      },
+      "04": {
+        "title": "Recherche de Proximité",
+        "desc": "Découvrez et réservez des terrains près de chez vous avec des cartes intégrées"
+      }
+    }
+  },
+  "HowItWorks": {
+    "label": "Comment ça Marche",
+    "title": "Trois Étapes Simples",
+    "subtitle": "D'un message WhatsApp à une réservation confirmée en moins d'une minute.",
+    "items": {
+      "01": {
+        "title": "Initiation WhatsApp",
+        "desc": "Envoyez un message directement sur WhatsApp pour commencer instantanément."
+      },
+      "02": {
+        "title": "Assistant Tiranek",
+        "desc": "Notre bot vous guide à travers le choix de la ville, du terrain et du créneau horaire."
+      },
+      "03": {
+        "title": "Confirmez & Payez",
+        "desc": "Recevez une facture claire et payez en toute sécurité en quelques secondes."
+      }
+    }
+  },
+  "Testimonials": {
+    "label": "Témoignages",
+    "title": "Approuvé par les Joueurs & Gérants",
+    "subtitle": "Ne nous croyez pas sur parole. Voici ce que notre communauté a à dire.",
+    "items": {
+      "0": {
+        "quote": "Tiranek a complètement changé la façon dont notre équipe organise ses matchs. Ce qui prenait des heures au téléphone prend maintenant 2 minutes sur WhatsApp.",
+        "name": "Badr C.",
+        "role": "Capitaine d'Équipe Amateur",
+        "initial": "B"
+      },
+      "1": {
+        "quote": "En tant que propriétaire, j'ai constaté une augmentation de 40% des réservations depuis que j'ai rejoint Tiranek. La réservation automatisée est révolutionnaire.",
+        "name": "Karim A.",
+        "role": "Gérant de Complexe Sportif",
+        "initial": "K"
+      },
+      "2": {
+        "quote": "La disponibilité en temps réel fait gagner tellement de temps. Je peux trouver un terrain libre le vendredi soir instantanément, sans les tracas habituels.",
+        "name": "Sara B.",
+        "role": "Passionnée de Football",
+        "initial": "S"
+      }
+    }
+  },
+  "Cta": {
+    "watermark": "COMMENCER",
+    "label": "Commencez Aujourd'hui",
+    "title": "Prêt à Commencer ?",
+    "subtitle": "Rejoignez des milliers de passionnés de sport qui réservent leur moment idéal",
+    "btn": "Contactez-nous"
+  },
+  "Footer": {
+    "subtitle": "Rendre la réservation de terrains de sport simple et accessible à tous.",
+    "legal": "Légal",
+    "socials": "Réseaux sociaux",
+    "contact": "Contact",
+    "copyright": "© 2026 Tiranek. Tous droits réservés.",
+    "systems": "Tous les systèmes sont opérationnels"
+  },
+  "Navbar": {
+    "features": "Fonctionnalités",
+    "howItWorks": "Comment ça Marche",
+    "testimonials": "Témoignages",
+    "bookNow": "Réserver"
+  },
+  "Contact": {
+    "help": "Nous sommes là pour vous aider",
+    "title1": "Contactez-",
+    "title2": "nous",
+    "subtitle": "Vous avez une question, une idée de partenariat ou vous voulez juste dire bonjour ? Nous serions ravis de vous entendre.",
+    "infoTitle": "Coordonnées",
+    "infoDesc": "Remplissez le formulaire et notre équipe vous répondra sous 24 heures.",
+    "emailLabel": "Email",
+    "quickAnswers": "Réponses Rapides",
+    "q1": "Combien de temps avant d'obtenir une réponse ?",
+    "a1": "Nous répondons généralement sous 24 heures les jours ouvrables.",
+    "q2": "Proposez-vous des démos ?",
+    "a2": "Oui ! Mentionnez-le dans votre message et nous en planifierons une.",
+    "q3": "Tiranek est-il disponible dans ma ville ?",
+    "a3": "Nous nous développons rapidement — contactez-nous pour vérifier la disponibilité.",
+    "successTitle": "Message Envoyé !",
+    "successDesc": "Merci de nous avoir contactés. Nous avons reçu votre message et vous répondrons sous 24 heures.",
+    "sendAnother": "Envoyer un autre message",
+    "formTitle": "Envoyez-nous un message",
+    "formRequired": "Tous les champs marqués d'un * sont obligatoires.",
+    "nameLabel": "Nom *",
+    "namePlaceholder": "Votre nom complet",
+    "emailLabel2": "Email *",
+    "emailPlaceholder": "vous@exemple.com",
+    "subjectLabel": "Sujet",
+    "subjectPlaceholder": "De quoi s'agit-il ?",
+    "messageLabel": "Message *",
+    "messagePlaceholder": "Dites-nous comment nous pouvons vous aider...",
+    "btnLoading": "Envoi en cours...",
+    "btnSubmit": "Envoyer le Message",
+    "errorNetwork": "Erreur réseau. Veuillez vérifier votre connexion et réessayer.",
+    "errorDefault": "Un problème est survenu."
+  },
+  "Metadata": {
+    "title": "Tiranek - Réservez Votre Terrain de Sport Idéal",
+    "description": "Le moyen le plus simple de réserver des terrains de sport. Trouvez, réservez et gérez votre temps de jeu en quelques clics.",
+    "keywords": "réservation de terrains de sport, réserver terrain, terrain de football, court de tennis, padel, tiranek",
+    "siteName": "Tiranek"
+  }
+}

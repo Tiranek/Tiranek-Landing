@@ -2,6 +2,7 @@
 
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useTranslations } from "next-intl"
 import { useEffect, useRef } from "react"
 
 const steps = [
@@ -23,6 +24,7 @@ const steps = [
 ]
 
 export default function HowItWorksSection() {
+  const t = useTranslations('HowItWorks')
   const sectionRef = useRef(null)
   const labelRef = useRef(null)
   const headingRef = useRef(null)
@@ -78,23 +80,23 @@ export default function HowItWorksSection() {
   }, [])
 
   return (
-    <div ref={sectionRef} id="how-it-works" className="bg-dark py-28 px-6">
+    <div ref={sectionRef} id="how-it-works" className="bg-dark py-12 md:py-28 px-6">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-20">
+        <div className="text-center mb-10 md:mb-20">
           <div className="overflow-hidden mb-4">
             <p ref={labelRef} className="section-label" style={{ opacity: 0, transform: "translateY(100%)" }}>
-              How it Works
+              {t('label')}
             </p>
           </div>
           <h2
             ref={headingRef}
-            className="font-display text-[clamp(2.5rem,7vw,5.5rem)] text-paper uppercase tracking-tight leading-none mb-5"
+            className="font-display text-[clamp(2.5rem,7vw,5.5rem)] text-paper uppercase tracking-tight leading-none rtl:leading-snug rtl:pb-2 mb-5"
             style={{ opacity: 0 }}
           >
-            Three Simple Steps
+            {t('title')}
           </h2>
           <p ref={subRef} className="text-sm text-muted max-w-sm mx-auto" style={{ opacity: 0 }}>
-            From WhatsApp message to confirmed booking in under a minute.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -103,11 +105,11 @@ export default function HowItWorksSection() {
             <div
               key={i}
               ref={(el) => { stepRefs.current[i] = el }}
-              className="bg-dark p-10 flex flex-col gap-6 group hover:bg-white/[0.03] transition-colors duration-300"
+              className="bg-dark p-6 md:p-10 flex flex-col gap-6 group hover:bg-white/[0.03] transition-colors duration-300"
               style={{ opacity: 0 }}
             >
               <span
-                className="font-display text-[5rem] leading-none font-bold select-none"
+                className="font-display text-[5rem] leading-none rtl:leading-snug font-bold select-none"
                 style={{ color: "#1e1e1e", WebkitTextStroke: "1px #3bf07330", transition: "color 0.3s" }}
                 onMouseEnter={(e) => { e.currentTarget.style.WebkitTextStroke = "1px #3bf073" }}
                 onMouseLeave={(e) => { e.currentTarget.style.WebkitTextStroke = "1px #3bf07330" }}
@@ -117,10 +119,10 @@ export default function HowItWorksSection() {
 
               <div>
                 <h3 className="font-display text-xl text-paper uppercase tracking-wide mb-3 group-hover:text-accent transition-colors duration-300">
-                  {step.title}
+                  {t(`items.${step.num}.title`)}
                 </h3>
                 <p className="text-sm text-muted leading-relaxed">
-                  {step.desc}
+                  {t(`items.${step.num}.desc`)}
                 </p>
               </div>
 

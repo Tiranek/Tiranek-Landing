@@ -77,6 +77,30 @@
         "name": "Sara B.",
         "role": "Passionnée de Football",
         "initial": "S"
+      },
+      "3": {
+        "quote": "Je passais 20 minutes à appeler différents terrains chaque week-end. Avec Tiranek, j'envoie un WhatsApp et mon créneau est confirmé en quelques secondes. Brillant.",
+        "name": "Youssef M.",
+        "role": "Joueur du Week-end",
+        "initial": "Y"
+      },
+      "4": {
+        "quote": "Gérer plusieurs terrains était un cauchemar avant Tiranek. Maintenant j'ai un tableau de bord clair et chaque réservation est organisée automatiquement.",
+        "name": "Nadia R.",
+        "role": "Propriétaire Multi-Terrains",
+        "initial": "N"
+      },
+      "5": {
+        "quote": "Notre club de foot est passé des plannings papier à Tiranek en un week-end. La différence est flagrante — moins de confusion, plus de football.",
+        "name": "Omar T.",
+        "role": "Coordinateur de Club de Football",
+        "initial": "O"
+      },
+      "6": {
+        "quote": "Le bot WhatsApp de Tiranek est si intuitif que même mon père l'a compris en cinq minutes. Enfin un système de réservation conçu pour tout le monde.",
+        "name": "Leila H.",
+        "role": "Joueuse de Padel",
+        "initial": "L"
       }
     }
   },
@@ -93,12 +117,17 @@
     "socials": "Réseaux sociaux",
     "contact": "Contact",
     "copyright": "© 2026 Tiranek. Tous droits réservés.",
-    "systems": "Tous les systèmes sont opérationnels"
+    "systems": "Tous les systèmes sont opérationnels",
+    "bannerLabel": "Réservez Votre Terrain",
+    "bannerHeading": "Où Chaque Match Commence"
   },
   "Navbar": {
     "features": "Fonctionnalités",
     "howItWorks": "Comment ça Marche",
     "testimonials": "Témoignages",
+    "aboutUs": "À Propos",
+    "pricing": "Tarifs",
+    "contactUs": "Nous Contacter",
     "bookNow": "Réserver"
   },
   "Contact": {
@@ -115,7 +144,7 @@
     "q2": "Proposez-vous des démos ?",
     "a2": "Oui ! Mentionnez-le dans votre message et nous en planifierons une.",
     "q3": "Tiranek est-il disponible dans ma ville ?",
-    "a3": "Nous nous développons rapidement — contactez-nous pour vérifier la disponibilité.",
+    "a3": "Nous nous développons rapidement, contactez-nous pour vérifier la disponibilité.",
     "successTitle": "Message Envoyé !",
     "successDesc": "Merci de nous avoir contactés. Nous avons reçu votre message et vous répondrons sous 24 heures.",
     "sendAnother": "Envoyer un autre message",
@@ -139,5 +168,23 @@
     "description": "Le moyen le plus simple de réserver des terrains de sport. Trouvez, réservez et gérez votre temps de jeu en quelques clics.",
     "keywords": "réservation de terrains de sport, réserver terrain, terrain de football, court de tennis, padel, tiranek",
     "siteName": "Tiranek"
+  },
+  "AboutUs": {
+    "badge": "Notre Histoire",
+    "title1": "À Propos",
+    "title2": "de Nous",
+    "subtitle": "Nous préparons quelque chose de spécial. L'histoire de Tiranek sera partagée ici bientôt.",
+    "comingSoon": "Bientôt Disponible",
+    "desc": "Nous travaillons dur pour vous proposer un aperçu complet des coulisses, de notre mission, de nos valeurs et de l'équipe qui mène la révolution de la réservation.",
+    "getNotified": "Être notifié en premier",
+    "backToHome": "Retour à l'Accueil",
+    "lockedSection": "L'histoire est verrouillée. Revenez bientôt"
+  },
+  "Pricing": {
+    "badge": "Nos Tarifs",
+    "title1": "Tarifs",
+    "title2": "Simples",
+    "subtitle": "Nous préparons quelque chose de spécial. Nos plans tarifaires seront disponibles très prochainement.",
+    "desc": "Nous travaillons dur pour vous proposer des tarifs transparents et flexibles, adaptés à tous, des joueurs occasionnels aux gérants de terrains."
   }
 }

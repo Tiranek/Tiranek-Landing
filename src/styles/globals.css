@@ -26,11 +26,27 @@
   --radius-lg: 10px;
   --radius-xl: 14px;
   --radius-2xl: 20px;
+
+  --breakpoint-xs: 375px;
+}
+
+@font-face {
+  font-family: "LemonBrushArabic";
+  src: url("/fonts/LemonBrushArabicPersonalUseOnly-Regular.otf") format("opentype");
+  font-display: swap;
+  /* Arabic script only — numbers fall back to Janna LT */
+  unicode-range: U+0600-U+06FF, U+0750-U+077F, U+08A0-U+08FF,
+    U+FB50-U+FDFF, U+FE70-U+FEFF;
 }
 
 html[dir="rtl"] {
-  --font-sans: var(--font-cairo), system-ui, sans-serif;
-  --font-display: var(--font-cairo), "Arial Black", sans-serif;
+  --font-sans: var(--font-janna), system-ui, sans-serif;
+  --font-display: "LemonBrushArabic", var(--font-janna), system-ui, sans-serif;
+  font-weight: 400;
+}
+/* Always use Janna LT for numbers — overrides display font in Arabic mode */
+.font-numeric {
+  font-family: var(--font-janna), system-ui, sans-serif !important;
 }
 
 *,
@@ -41,7 +57,6 @@ html[dir="rtl"] {
 
 html {
   cursor: none;
-  scroll-behavior: smooth;
 }
 
 body {
@@ -62,12 +77,13 @@ body {
   left: 0;
   width: 8px;
   height: 8px;
-  background: #0d0d0d;
+  background: #ffffff;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
   will-change: transform;
+  mix-blend-mode: difference;
 }
 
 .cursor-ring {
@@ -76,12 +92,13 @@ body {
   left: 0;
   width: 36px;
   height: 36px;
-  border: 1.5px solid #0d0d0d;
+  border: 1.5px solid #ffffff;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
   transform: translate(-50%, -50%);
   will-change: transform;
+  mix-blend-mode: difference;
 }
 
 @media (hover: none) {
@@ -251,6 +268,7 @@ body {
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(200%);
   }

@@ -1,15 +1,15 @@
-import nodemailer from "nodemailer"
-import { NextResponse } from "next/server"
+import nodemailer from "nodemailer";
+import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
-    const { name, email, subject, message } = await request.json()
+    const { name, email, subject, message } = await request.json();
 
     if (!name || !email || !message) {
       return NextResponse.json(
         { error: "Name, email, and message are required." },
-        { status: 400 },
-      )
+        { status: 400 }
+      );
     }
 
     const transporter = nodemailer.createTransport({
@@ -20,7 +20,7 @@ export async function POST(request) {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
-    })
+    });
 
     await transporter.sendMail({
       from: `"Tiranek Contact" <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
@@ -65,14 +65,14 @@ export async function POST(request) {
           </div>
         </div>
       `,
-    })
+    });
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("Contact form error:", err)
+    console.error("Contact form error:", err);
     return NextResponse.json(
       { error: "Failed to send message. Please try again later." },
-      { status: 500 },
-    )
+      { status: 500 }
+    );
   }
 }

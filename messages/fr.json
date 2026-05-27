@@ -119,7 +119,15 @@
     "copyright": "© 2026 Tiranek. Tous droits réservés.",
     "systems": "Tous les systèmes sont opérationnels",
     "bannerLabel": "Réservez Votre Terrain",
-    "bannerHeading": "Où Chaque Match Commence"
+    "bannerHeading": "Où Chaque Match Commence",
+    "pagesHeading": "Pages",
+    "statusHeading": "Statut",
+    "pageHome": "Accueil",
+    "pageAbout": "À Propos",
+    "pagePricing": "Tarifs",
+    "pageContact": "Contact",
+    "pagePrivacy": "Politique de Confidentialité",
+    "pageTerms": "Conditions d'Utilisation"
   },
   "Navbar": {
     "features": "Fonctionnalités",
@@ -185,6 +193,10 @@
     "title1": "Tarifs",
     "title2": "Simples",
     "subtitle": "Nous préparons quelque chose de spécial. Nos plans tarifaires seront disponibles très prochainement.",
-    "desc": "Nous travaillons dur pour vous proposer des tarifs transparents et flexibles, adaptés à tous, des joueurs occasionnels aux gérants de terrains."
+    "desc": "Nous travaillons dur pour vous proposer des tarifs transparents et flexibles, adaptés à tous, des joueurs occasionnels aux gérants de terrains.",
+    "plansLocked": "Les plans sont verrouillés. Revenez bientôt",
+    "whileYouWait": "En attendant",
+    "getNotifiedFirst": "Être notifié en premier",
+    "backToHome": "Retour à l'Accueil"
   }
 }

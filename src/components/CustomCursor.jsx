@@ -27,7 +27,7 @@ export default function CustomCursor() {
       gsap.to(dot, { scale: 1, background: "#ffffff", duration: 0.2 });
     };
 
-    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mousemove", onMove, { passive: true });
 
     const refresh = () => {
       document.querySelectorAll("a, button, [data-cursor]").forEach((el) => {

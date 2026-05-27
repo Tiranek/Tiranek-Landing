@@ -2,6 +2,7 @@
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
@@ -62,24 +63,25 @@ const LinkedinIcon = (props) => (
   </svg>
 );
 
-const pages = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Contact", href: "/contact" },
-  { label: "Privacy Policy", href: "#" },
-  { label: "Terms of Service", href: "#" },
+const PAGE_HREFS = [
+  { key: "pageHome", href: "/" },
+  { key: "pageAbout", href: "/about" },
+  { key: "pagePricing", href: "/pricing" },
+  { key: "pageContact", href: "/contact" },
+  { key: "pagePrivacy", href: "#" },
+  { key: "pageTerms", href: "#" },
 ]
 
 const socials = [
   { icon: InstagramIcon, href: "https://instagram.com/tiranekapp", label: "Instagram" },
   { icon: FacebookIcon, href: "https://facebook.com/tiranekapp", label: "Facebook" },
   { icon: Mail, href: "mailto:contact@tiranek.com", label: "Email" },
-  { icon: LinkedinIcon, href: "https://linkedin.com/tiranekapp", label: "LinkedIn" },
+  { icon: LinkedinIcon, href: "https://www.linkedin.com/company/tiranekapp/", label: "LinkedIn" },
 ];
 
 export default function Footer() {
   const t = useTranslations("Footer");
+  const pages = PAGE_HREFS.map(({ key, href }) => ({ label: t(key), href }));
   const footerRef = useRef(null);
   const bannerRef = useRef(null);
   const contentRef = useRef(null);
@@ -118,11 +120,14 @@ export default function Footer() {
   return (
     <footer ref={footerRef} className="overflow-hidden bg-dark">
       <div ref={bannerRef} className="relative w-full overflow-hidden" style={{ height: "clamp(260px, 36vw, 480px)" }}>
-        <img
-          src="/images/footer-banner.png"
-          alt="Tiranek pitch action"
-          className="w-full h-full object-cover object-center"
+        <Image
+          src="/images/footer-banner.webp"
+          alt="Football players competing on a pitch at Tiranek"
+          fill
+          className="object-cover object-center"
           style={{ filter: "brightness(0.55) saturate(1.15)" }}
+          sizes="100vw"
+          loading="lazy"
         />
 
         <div
@@ -183,11 +188,14 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-6 md:px-16 pt-12 pb-6 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-10 mb-12">
             <div className="col-span-2 md:col-span-2 footer-reveal">
-              <img
-                src="/images/web-logo-extd-no-bg.png"
+              <Image
+                src="/images/web-logo-extd-no-bg.webp"
                 alt="Tiranek"
+                width={200}
+                height={40}
                 className="h-10 w-auto object-contain mb-4"
                 style={{ filter: "brightness(0) invert(1)" }}
+                loading="lazy"
               />
               <p className="text-sm leading-relaxed" style={{ color: "#888", maxWidth: "26ch" }}>
                 {t("subtitle")}
@@ -214,7 +222,7 @@ export default function Footer() {
                       e.currentTarget.style.background = "transparent";
                     }}
                   >
-                    <Icon className="w-4 h-4" />
+                    <Icon className="w-4 h-4" aria-hidden="true" />
                   </a>
                 ))}
               </div>
@@ -225,7 +233,7 @@ export default function Footer() {
                 className="text-[10px] font-bold uppercase tracking-[0.22em] mb-5"
                 style={{ color: "#3bf073" }}
               >
-                Pages
+                {t("pagesHeading")}
               </h4>
               <ul className="space-y-3">
                 {pages.slice(0, 4).map(({ label, href }) => (
@@ -273,7 +281,7 @@ export default function Footer() {
                 className="text-[10px] font-bold uppercase tracking-[0.22em] mb-5"
                 style={{ color: "#3bf073" }}
               >
-                Status
+                {t("statusHeading")}
               </h4>
               <div className="flex items-center gap-2">
                 <p className="text-sm" style={{ color: "#888" }}>

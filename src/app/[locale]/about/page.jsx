@@ -151,10 +151,10 @@ export default function AboutPage() {
             />
 
             <div>
-              <p className="text-[10px] font-bold text-green uppercase tracking-[0.22em] mb-3">
+              <p className="text-[10px] font-bold text-green uppercase tracking-[0.22em] mb-6">
                 {t("comingSoon")}
               </p>
-              <h2 className="font-display text-4xl md:text-5xl text-paper leading-tight mb-4">
+              <h2 className="font-display text-4xl md:text-5xl text-paper leading-tight mb-6">
                 {t("subtitle")}
               </h2>
               <p className="text-sm text-paper/50 leading-relaxed">{t("desc")}</p>

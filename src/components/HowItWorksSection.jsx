@@ -73,7 +73,7 @@ export default function HowItWorksSection() {
   }, []);
 
   return (
-    <div ref={sectionRef} id="how-it-works" className="bg-dark py-12 md:py-28 px-6">
+    <section ref={sectionRef} id="how-it-works" className="bg-dark py-12 md:py-28 px-6">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-10 md:mb-20">
           <div className="overflow-hidden mb-4">
@@ -106,19 +106,21 @@ export default function HowItWorksSection() {
               }}
               className="bg-dark p-6 md:p-10 flex flex-col gap-6 group hover:bg-white/[0.03] transition-colors duration-300"
               style={{ opacity: 0 }}
+              onMouseEnter={(e) => {
+                const num = e.currentTarget.querySelector(".step-number");
+                if (num) num.style.WebkitTextStroke = "1px #3bf073";
+              }}
+              onMouseLeave={(e) => {
+                const num = e.currentTarget.querySelector(".step-number");
+                if (num) num.style.WebkitTextStroke = "1px #3bf07330";
+              }}
             >
               <span
-                className="font-numeric text-[5rem] leading-none rtl:leading-snug font-bold select-none"
+                className="step-number font-numeric text-[5rem] leading-none rtl:leading-snug font-bold select-none"
                 style={{
                   color: "#1e1e1e",
                   WebkitTextStroke: "1px #3bf07330",
-                  transition: "color 0.3s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.WebkitTextStroke = "1px #3bf073";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.WebkitTextStroke = "1px #3bf07330";
+                  transition: "WebkitTextStroke 0.3s",
                 }}
               >
                 {step.num}
@@ -136,6 +138,6 @@ export default function HowItWorksSection() {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

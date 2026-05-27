@@ -6,7 +6,7 @@
   --color-accent: #3bf073;
   --color-dark: #111111;
   --color-surface: #ffffff;
-  --color-muted: #888888;
+  --color-muted: #767676;
   --color-border: #e2e0d8;
 
   --color-green: #3bf073;
@@ -34,7 +34,6 @@
   font-family: "LemonBrushArabic";
   src: url("/fonts/LemonBrushArabicPersonalUseOnly-Regular.otf") format("opentype");
   font-display: swap;
-  /* Arabic script only — numbers fall back to Janna LT */
   unicode-range: U+0600-U+06FF, U+0750-U+077F, U+08A0-U+08FF,
     U+FB50-U+FDFF, U+FE70-U+FEFF;
 }
@@ -44,7 +43,7 @@ html[dir="rtl"] {
   --font-display: "LemonBrushArabic", var(--font-janna), system-ui, sans-serif;
   font-weight: 400;
 }
-/* Always use Janna LT for numbers — overrides display font in Arabic mode */
+
 .font-numeric {
   font-family: var(--font-janna), system-ui, sans-serif !important;
 }
@@ -69,6 +68,17 @@ body {
   html {
     cursor: auto;
   }
+}
+
+:focus-visible {
+  outline: 2px solid #3bf073;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Remove focus ring for mouse users, keep for keyboard */
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .cursor-dot {

@@ -120,7 +120,7 @@ export default function PricingPage() {
           </div>
 
           <p className="text-center text-xs text-muted/60 uppercase tracking-[0.2em] font-semibold mt-6">
-            Plans are locked. Check back soon
+            {t("plansLocked")}
           </p>
         </div>
       </section>
@@ -137,10 +137,10 @@ export default function PricingPage() {
             />
 
             <div>
-              <p className="text-[10px] font-bold text-green uppercase tracking-[0.22em] mb-3">
-                While you wait
+              <p className="text-[10px] font-bold text-green uppercase tracking-[0.22em] mb-8">
+                {t("whileYouWait")}
               </p>
-              <h2 className="font-display text-4xl md:text-5xl text-paper leading-tight mb-4">
+              <h2 className="font-display text-4xl md:text-5xl text-paper leading-tight mb-6">
                 {t("desc").split("—")[0].trim()}
               </h2>
               <p className="text-sm text-paper/50 leading-relaxed">{t("desc")}</p>
@@ -151,7 +151,7 @@ export default function PricingPage() {
                 href="/contact"
                 className="flex items-center justify-between px-6 py-4 bg-green text-navy font-bold rounded-2xl hover:bg-paper transition-all duration-300 text-sm uppercase tracking-wide group active:scale-[0.98]"
               >
-                <span>Get notified first</span>
+                <span>{t("getNotifiedFirst")}</span>
                 <svg
                   className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
                   fill="none"
@@ -171,7 +171,7 @@ export default function PricingPage() {
                 href="/"
                 className="flex items-center justify-between px-6 py-4 bg-white/5 hover:bg-white/10 text-paper/70 hover:text-paper rounded-2xl transition-all duration-300 text-sm font-semibold border border-white/10 group"
               >
-                <span>Back to Home</span>
+                <span>{t("backToHome")}</span>
                 <svg
                   className="w-4 h-4 opacity-50"
                   fill="none"

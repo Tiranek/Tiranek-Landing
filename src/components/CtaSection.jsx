@@ -63,7 +63,7 @@ export default function CtaSection() {
       gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.5)" });
     };
 
-    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mousemove", onMove, { passive: true });
     btn.addEventListener("mouseleave", onLeave);
 
     return () => {

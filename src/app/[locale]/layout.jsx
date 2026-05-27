@@ -27,6 +27,8 @@ const jannaLT = localFont({
   display: "swap",
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://tiranek.ma";
+
 export async function generateMetadata({ params }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Metadata" });
@@ -35,11 +37,11 @@ export async function generateMetadata({ params }) {
     title: t("title"),
     description: t("description"),
     keywords: t("keywords"),
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://tiranek.ma"),
+    metadataBase: new URL(SITE_URL),
     openGraph: {
       title: t("title"),
       description: t("description"),
-      url: `/${locale}`,
+      url: `${SITE_URL}/${locale}`,
       siteName: t("siteName"),
       images: [
         {
@@ -59,11 +61,11 @@ export async function generateMetadata({ params }) {
       images: ["/og-image.png"],
     },
     alternates: {
-      canonical: `/${locale}`,
+      canonical: `${SITE_URL}/${locale}`,
       languages: {
-        en: "/en",
-        fr: "/fr",
-        ar: "/ar",
+        en: `${SITE_URL}/en`,
+        fr: `${SITE_URL}/fr`,
+        ar: `${SITE_URL}/ar`,
       },
     },
     icons: {
@@ -75,6 +77,10 @@ export async function generateMetadata({ params }) {
       apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
     },
     manifest: "/site.webmanifest",
+    robots: {
+      index: true,
+      follow: true,
+    },
   };
 }
 
@@ -87,12 +93,74 @@ export default async function RootLayout({ children, params }) {
 
   const messages = await getMessages();
 
+  const t = await getTranslations({ locale, namespace: "Metadata" });
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: t("siteName"),
+        description: t("description"),
+        inLanguage: locale,
+        potentialAction: {
+          "@type": "SearchAction",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: `${SITE_URL}/en?q={search_term_string}`,
+          },
+          "query-input": "required name=search_term_string",
+        },
+      },
+      {
+        "@type": "Organization",
+        "@id": `${SITE_URL}/#organization`,
+        name: "Tiranek",
+        url: SITE_URL,
+        logo: {
+          "@type": "ImageObject",
+          url: `${SITE_URL}/images/web-logo-extd-no-bg.webp`,
+          width: 400,
+          height: 80,
+        },
+        sameAs: [
+          "https://instagram.com/tiranekapp",
+          "https://facebook.com/tiranekapp",
+          "https://linkedin.com/tiranekapp",
+        ],
+        contactPoint: {
+          "@type": "ContactPoint",
+          email: "contact@tiranek.ma",
+          contactType: "customer support",
+        },
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${SITE_URL}/${locale}/#webpage`,
+        url: `${SITE_URL}/${locale}`,
+        name: t("title"),
+        description: t("description"),
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        about: { "@id": `${SITE_URL}/#organization` },
+        inLanguage: locale,
+      },
+    ],
+  };
+
   return (
     <html
       lang={locale}
       dir={locale === "ar" ? "rtl" : "ltr"}
       className={`${bebasNeue.variable} ${dmSans.variable} ${jannaLT.variable} antialiased`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: structured data injection
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="font-sans">
         <NextIntlClientProvider messages={messages}>
           <LenisProvider>{children}</LenisProvider>

@@ -1,12 +1,14 @@
+import dynamic from "next/dynamic";
 import CustomCursor from "@/components/CustomCursor";
-import CtaSection from "@/components/CtaSection";
-import FeaturesSection from "@/components/FeaturesSection";
-import Footer from "@/components/Footer";
 import GrainOverlay from "@/components/GrainOverlay";
-import HeroSection from "@/components/HeroSection";
-import HowItWorksSection from "@/components/HowItWorksSection";
 import Navbar from "@/components/Navbar";
-import TestimonialsSection from "@/components/TestimonialsSection";
+import HeroSection from "@/components/HeroSection";
+
+const FeaturesSection = dynamic(() => import("@/components/FeaturesSection"));
+const HowItWorksSection = dynamic(() => import("@/components/HowItWorksSection"));
+const TestimonialsSection = dynamic(() => import("@/components/TestimonialsSection"));
+const CtaSection = dynamic(() => import("@/components/CtaSection"));
+const Footer = dynamic(() => import("@/components/Footer"));
 
 export default function LandingPage() {
   return (
@@ -23,3 +25,4 @@ export default function LandingPage() {
     </div>
   );
 }
+

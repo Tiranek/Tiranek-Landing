@@ -287,3 +287,38 @@ body {
 .animate-loading-bar {
   animation: loading-bar 1.5s infinite ease-in-out;
 }
+
+@keyframes marquee-ltr {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-33.3333%, 0, 0);
+  }
+}
+
+@keyframes marquee-rtl {
+  0% {
+    transform: translate3d(-33.3333%, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.marquee-ltr {
+  animation: marquee-ltr 30s linear infinite;
+  will-change: transform;
+}
+
+.marquee-rtl {
+  animation: marquee-rtl 30s linear infinite;
+  will-change: transform;
+}
+
+.marquee-paused .marquee-ltr,
+.marquee-paused .marquee-rtl {
+  animation-play-state: paused;
+}

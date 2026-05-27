@@ -7,7 +7,9 @@ import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
-import ShadesBackground from "./ShadesBackground";
+import dynamic from "next/dynamic";
+const ShadesBackground = dynamic(() => import("./ShadesBackground"), { ssr: false });
+
 
 const AVATAR_COLORS = ["#3bf073", "#0d0d0d", "#1a7a35", "#5adb88"];
 
@@ -20,7 +22,12 @@ export default function HeroSection() {
   const subtitleRef = useRef(null);
   const ctaRef = useRef(null);
   const previewRef = useRef(null);
+  const [loadBg, setLoadBg] = useState(false);
 
+  useEffect(() => {
+    const timer = setTimeout(() => setLoadBg(true), 250);
+    return () => clearTimeout(timer);
+  }, []);
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -83,7 +90,7 @@ export default function HeroSection() {
       ref={sectionRef}
       className="relative min-h-screen flex flex-col justify-center pt-16 pb-2 md:pt-24 md:pb-20 px-4 sm:px-6 overflow-hidden"
     >
-      <ShadesBackground />
+      {loadBg && <ShadesBackground />}
 
       <div
         ref={watermarkRef}
@@ -188,7 +195,7 @@ export default function HeroSection() {
                         width={1920}
                         height={1080}
                         className="w-full h-auto object-contain"
-                        priority
+                        loading="lazy"
                         sizes="(max-width: 768px) 100vw, 70vw"
                       />
                       <div

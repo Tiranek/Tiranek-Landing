@@ -178,15 +178,23 @@
     "siteName": "Tiranek"
   },
   "AboutUs": {
-    "badge": "Notre Histoire",
-    "title1": "À Propos",
-    "title2": "de Nous",
-    "subtitle": "Nous préparons quelque chose de spécial. L'histoire de Tiranek sera partagée ici bientôt.",
-    "comingSoon": "Bientôt Disponible",
-    "desc": "Nous travaillons dur pour vous proposer un aperçu complet des coulisses, de notre mission, de nos valeurs et de l'équipe qui mène la révolution de la réservation.",
-    "getNotified": "Être notifié en premier",
-    "backToHome": "Retour à l'Accueil",
-    "lockedSection": "L'histoire est verrouillée. Revenez bientôt"
+    "title1": "À",
+    "title2": "Propos",
+    "subtitle": "Bienvenue sur Tiranek Jouez plus, gérez moins.",
+    "storyTitle": "Notre Histoire",
+    "storyText": "Comme toute grande idée, Tiranek est née de la frustration. En tant que passionnés de football, organiser un simple match à 5 avec des amis était un cauchemar logistique constant. Nous avons perdu des heures à appeler de multiples terrains, à gérer les doubles réservations, et à nous présenter en personne juste pour trouver un créneau libre. Cependant, après avoir passé du temps sur les terrains et discuté avec les gestionnaires d'installations, nous avons découvert un problème bien plus important : les propriétaires souffraient encore plus. Ils perdaient des revenus importants à cause des réservations désorganisées, des créneaux vides et des absences de dernière minute. C'est à ce moment-là que nous avons réalisé que l'industrie du sport n'avait pas seulement besoin d'un autre annuaire ; elle avait besoin d'une refonte opérationnelle complète.",
+    "missionTitle": "Notre Mission",
+    "missionText": "Chez Tiranek, notre mission est d'éradiquer complètement les frictions dans le sport de base. Nous voulons donner aux gestionnaires d'installations les outils dont ils ont besoin pour sécuriser leurs revenus et automatiser leurs opérations, tout en offrant aux joueurs la liberté ultime de trouver et de réserver leur terrain parfait instantanément.",
+    "whatWeDoTitle": "Ce Que Nous Faisons",
+    "whatWeDoText": "Nous fournissons un écosystème numérique puissant à double face conçu pour les terrains de sport.",
+    "whatWeDoManagersTitle": "Pour les Gestionnaires :",
+    "whatWeDoManagersText": "Un tableau de bord B2B centralisé qui élimine les agendas papier, automatise les plannings, suit les revenus et met fin aux doubles réservations.",
+    "whatWeDoPlayersTitle": "Pour les Joueurs :",
+    "whatWeDoPlayersText": "Une expérience de réservation fluide et sans friction où trouver et sécuriser un terrain prend des secondes, et non des heures.",
+    "teamTitle": "L'Équipe",
+    "teamText": "Nous sommes une équipe de deux personnes.",
+    "visionTitle": "La Vision",
+    "visionText": "Notre vision est simple mais ambitieuse : construire l'application mobile ultime et tout-en-un où réserver un terrain de sport est aussi facile qu'un seul clic. Nous travaillons vers un avenir où chaque installation sportive du pays est dans votre poche, instantanément accessible et parfaitement organisée. Votre jeu, votre temps, gérés sans effort."
   },
   "Pricing": {
     "badge": "Nos Tarifs",

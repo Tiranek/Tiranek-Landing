@@ -79,16 +79,15 @@ export default function Navbar() {
       <nav
         ref={navRef}
         suppressHydrationWarning
-        className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
-          isMounted && scrolled
-            ? "top-4 w-[92%] max-w-5xl rounded-full bg-[#0d0d0d]/85 backdrop-blur-xl border border-white/10 shadow-[0_24px_50px_rgba(0,0,0,0.35)] py-2 px-6"
-            : "top-0 w-full bg-transparent border-b border-transparent py-6 px-6 lg:px-8"
-        }`}
+        className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${isMounted && scrolled
+          ? "top-4 w-[92%] max-w-5xl rounded-full bg-[#0d0d0d]/85 backdrop-blur-xl border border-white/10 shadow-[0_24px_50px_rgba(0,0,0,0.35)] py-2 px-6"
+          : "top-0 w-full bg-transparent border-b border-transparent py-6 px-6 lg:px-8"
+          }`}
       >
         <div className="relative flex justify-between items-center h-12 w-full">
           <Link href="/" onClick={handleLogoClick} className="flex items-center group">
             <Image
-              src="/images/logo-no-bg.webp"
+              src="/images/logo.svg"
               alt="Tiranek"
               width={120}
               height={48}
@@ -101,11 +100,10 @@ export default function Navbar() {
             {links.map(({ labelKey, href }) => {
               const label = t(labelKey);
               const isActive = pathname === href;
-              const cls = `relative px-3 py-1.5 text-xs font-semibold tracking-wide uppercase transition-colors duration-300 ${
-                isMounted && scrolled
-                  ? isActive ? "text-accent" : "text-paper/70 hover:text-paper"
-                  : isActive ? "text-accent" : "text-ink/60 hover:text-ink"
-              } group/item`;
+              const cls = `relative px-3 py-1.5 text-xs font-semibold tracking-wide uppercase transition-colors duration-300 ${isMounted && scrolled
+                ? isActive ? "text-accent" : "text-paper/70 hover:text-paper"
+                : isActive ? "text-accent" : "text-ink/60 hover:text-ink"
+                } group/item`;
               return (
                 <Link key={label} href={href} onClick={handleLinkClick} className={cls}>
                   {label}
@@ -122,9 +120,8 @@ export default function Navbar() {
                 aria-expanded={langOpen}
                 aria-haspopup="listbox"
                 aria-label="Select language"
-                className={`flex items-center gap-1.5 text-xs font-bold tracking-wider uppercase transition-colors duration-300 ${
-                  isMounted && scrolled ? "text-accent hover:text-paper" : "text-ink hover:text-accent"
-                }`}
+                className={`flex items-center gap-1.5 text-xs font-bold tracking-wider uppercase transition-colors duration-300 ${isMounted && scrolled ? "text-accent hover:text-paper" : "text-ink hover:text-accent"
+                  }`}
               >
                 <Globe className="w-3.5 h-3.5" strokeWidth={2.5} aria-hidden="true" />
                 <span>{locale}</span>
@@ -142,9 +139,8 @@ export default function Navbar() {
                     role="option"
                     aria-selected={locale === loc.code}
                     onClick={() => { changeLocale(loc.code); setLangOpen(false); }}
-                    className={`text-left px-3 py-2 text-xs font-semibold tracking-wide rounded-lg transition-colors duration-200 ${
-                      locale === loc.code ? "bg-accent/10 text-accent" : "text-white/70 hover:bg-white/5 hover:text-white"
-                    }`}
+                    className={`text-left px-3 py-2 text-xs font-semibold tracking-wide rounded-lg transition-colors duration-200 ${locale === loc.code ? "bg-accent/10 text-accent" : "text-white/70 hover:bg-white/5 hover:text-white"
+                      }`}
                   >
                     {loc.label}
                   </button>
@@ -153,20 +149,18 @@ export default function Navbar() {
             </div>
             <Link
               href="/contact"
-              className={`px-5 py-2.5 rounded-full text-xs font-bold tracking-wide uppercase transition-all duration-300 shadow-sm active:scale-95 ${
-                isMounted && scrolled
-                  ? "bg-accent text-ink hover:bg-paper hover:text-[#0d0d0d] shadow-[0_4px_14px_rgba(59,240,115,0.25)]"
-                  : "bg-ink text-paper hover:bg-accent hover:text-ink"
-              }`}
+              className={`px-5 py-2.5 rounded-full text-xs font-bold tracking-wide uppercase transition-all duration-300 shadow-sm active:scale-95 ${isMounted && scrolled
+                ? "bg-accent text-ink hover:bg-paper hover:text-[#0d0d0d] shadow-[0_4px_14px_rgba(59,240,115,0.25)]"
+                : "bg-ink text-paper hover:bg-accent hover:text-ink"
+                }`}
             >
               {t("bookNow")}
             </Link>
           </div>
 
           <button
-            className={`md:hidden flex items-center justify-center p-2 rounded-full transition-all duration-300 ${
-              isMounted && scrolled ? "text-paper hover:bg-white/10" : "text-ink hover:bg-ink/5"
-            }`}
+            className={`md:hidden flex items-center justify-center p-2 rounded-full transition-all duration-300 ${isMounted && scrolled ? "text-paper hover:bg-white/10" : "text-ink hover:bg-ink/5"
+              }`}
             onClick={() => setMobileOpen((v) => !v)}
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
@@ -195,9 +189,8 @@ export default function Navbar() {
                   key={labelKey}
                   href={href}
                   onClick={handleLinkClick}
-                  className={`mobile-link py-2 font-display text-2xl transition-colors tracking-wide uppercase border-b border-white/5 ${
-                    isActive ? "text-accent" : "text-paper/80 hover:text-accent"
-                  }`}
+                  className={`mobile-link py-2 font-display text-2xl transition-colors tracking-wide uppercase border-b border-white/5 ${isActive ? "text-accent" : "text-paper/80 hover:text-accent"
+                    }`}
                 >
                   {label}
                 </Link>
@@ -213,11 +206,10 @@ export default function Navbar() {
                   key={loc.code}
                   onClick={() => { changeLocale(loc.code); setMobileOpen(false); }}
                   aria-pressed={locale === loc.code}
-                  className={`flex items-center justify-between px-4 py-3 rounded-xl border transition-all duration-300 ${
-                    locale === loc.code
-                      ? "bg-accent/10 border-accent/30 text-accent"
-                      : "bg-white/5 border-transparent text-white/70 hover:bg-white/10 hover:text-white"
-                  }`}
+                  className={`flex items-center justify-between px-4 py-3 rounded-xl border transition-all duration-300 ${locale === loc.code
+                    ? "bg-accent/10 border-accent/30 text-accent"
+                    : "bg-white/5 border-transparent text-white/70 hover:bg-white/10 hover:text-white"
+                    }`}
                 >
                   <span className="text-sm font-semibold">{loc.label}</span>
                   {locale === loc.code && <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" aria-hidden="true" />}

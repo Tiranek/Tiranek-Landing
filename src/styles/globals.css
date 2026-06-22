@@ -20,6 +20,7 @@
 
   --font-sans: var(--font-dm-sans), system-ui, sans-serif;
   --font-display: var(--font-bebas-neue), "Arial Black", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace;
 
   --radius-sm: 3px;
   --radius-md: 6px;
@@ -321,4 +322,30 @@ body {
 .marquee-paused .marquee-ltr,
 .marquee-paused .marquee-rtl {
   animation-play-state: paused;
+}
+
+.shimmer-text {
+  display: inline-block;
+  background: linear-gradient(110deg,
+      #0d0d0d 0%,
+      #0d0d0d 35%,
+      #3bf073 50%,
+      #0d0d0d 65%,
+      #0d0d0d 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shimmer-sweep 3.5s linear infinite;
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    background-position: 150% center;
+  }
+
+  100% {
+    background-position: -150% center;
+  }
 }

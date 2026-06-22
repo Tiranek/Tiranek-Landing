@@ -178,15 +178,23 @@
     "siteName": "Tiranek"
   },
   "AboutUs": {
-    "badge": "Our Story",
     "title1": "About",
     "title2": "Us",
-    "subtitle": "We're crafting something special. The story of Tiranek will be shared here soon.",
-    "comingSoon": "Coming Soon",
-    "desc": "We're working hard to bring you a full look behind the scenes, our mission, values, and the team driving the booking revolution.",
-    "getNotified": "Get notified first",
-    "backToHome": "Back to Home",
-    "lockedSection": "Story is locked. Check back soon"
+    "subtitle": "Welcome to Tiranek Play More, Manage Less.",
+    "storyTitle": "Our Story",
+    "storyText": "Like every great idea, Tiranek was born out of frustration. As passionate soccer enthusiasts, organizing a simple 5x5 match with friends was a constant logistical nightmare. We wasted hours calling multiple fields, dealing with double-bookings, and showing up in person just to find an open slot. However, after spending time at the pitches and talking to facility managers, we uncovered a much bigger problem: the owners were suffering even more. They were losing significant revenue to disorganized bookings, empty slots, and last-minute no-shows. That’s when we realized the sports industry didn't just need another directory; it needed a complete operational overhaul.",
+    "missionTitle": "Our Mission",
+    "missionText": "At Tiranek, our mission is to completely eradicate the friction in grassroots sports. We want to empower facility managers with the tools they need to secure their revenue and automate their operations, while giving players the ultimate freedom to find and book their perfect pitch instantly.",
+    "whatWeDoTitle": "What We Do",
+    "whatWeDoText": "We provide a powerful, dual-sided digital ecosystem designed for sports fields.",
+    "whatWeDoManagersTitle": "For the Managers:",
+    "whatWeDoManagersText": "A centralized B2B dashboard that eliminates paper diaries, automates schedules, tracks revenue, and puts an end to double-bookings.",
+    "whatWeDoPlayersTitle": "For the Players:",
+    "whatWeDoPlayersText": "A seamless, zero-friction booking experience where finding and securing a pitch takes seconds, not hours.",
+    "teamTitle": "The Team",
+    "teamText": "We are a team of two persons.",
+    "visionTitle": "The Vision",
+    "visionText": "Our vision is simple but ambitious: to build the ultimate, all-in-one mobile application where reserving a sports field is as easy as a single click. We are working towards a future where every sports facility in the country is right in your pocket, instantly accessible, and perfectly organized. Your game, your time, effortlessly managed."
   },
   "Pricing": {
     "badge": "Pricing Plans",
